@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import Planets from './components/Planets'
+import Category from './components/Category'
 import Home from './components/Home'
 import People from './components/People'
 import axios from 'axios';
@@ -26,13 +26,14 @@ function App() {
     }
     axios
     .all(catReqs)
-    .then(allReq => allReq
-      .map(sinRes => setcatData(state => [...state, sinRes])))
+    .then(axios.spread((people, planets) => {
+      setcatData(state => [...state, people])
+      setcatData(state => [...state, planets])
+
+    }))
     .catch(err => console.log(err))
 
   },[])
-  console.log(catData)
-  
   return (
     <Router>
       <div>
@@ -51,14 +52,14 @@ function App() {
         </nav>
 
         <Switch>
-          <Route path="/planets">
-            <Planets />
+          <Route exact path="/">
+            <Home state={catData}/>
+          </Route>
+          <Route path="/:name">
+            <Category />
           </Route>
           <Route path="/people">
             <People />
-          </Route>
-          <Route path="/">
-            <Home />
           </Route>
         </Switch>
       </div>
