@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import Category from './components/Category'
 import Home from './components/Home'
-import People from './components/People'
+import Single from './components/Single'
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -18,7 +18,9 @@ function App() {
 
   const [catData, setcatData] = useState([]);
   
-  useEffect(() => {
+  // Gets first page of the categories and store them in state which is passed as prop to the Home component //
+  
+  useEffect(() => {  
     const categories = ["people", "planets"];
     let catReqs = []
     for (let i in categories) {
@@ -26,14 +28,14 @@ function App() {
     }
     axios
     .all(catReqs)
-    .then(axios.spread((people, planets) => {
-      setcatData(state => [...state, people])
-      setcatData(state => [...state, planets])
-
+    .then(axios.spread((catOne, catTwo) => {
+      setcatData(state => [...state, catOne])
+      setcatData(state => [...state, catTwo])
     }))
     .catch(err => console.log(err))
 
   },[])
+
   return (
     <Router>
       <div>
@@ -42,24 +44,18 @@ function App() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/planets">Planets</Link>
-            </li>
-            <li>
-              <Link to="/people">People</Link>
-            </li>
           </ul>
         </nav>
 
-        <Switch>
+        <Switch> 
           <Route exact path="/">
             <Home state={catData}/>
           </Route>
-          <Route path="/:name">
+          <Route path="/category/:name">
             <Category />
           </Route>
-          <Route path="/people">
-            <People />
+          <Route path="/single/:name">
+            <Single />
           </Route>
         </Switch>
       </div>

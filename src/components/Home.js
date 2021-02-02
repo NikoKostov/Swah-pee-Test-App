@@ -10,54 +10,35 @@ import {
     useParams
   } from "react-router-dom";
 
-function Home({ state }) {
+function Home({ state: data }) {
+    // Gets the data from prop and fill it in to Card component
+    const render = (cat) => {
+        const catName = cat.config.url.substring(cat.config.url.lastIndexOf('/') + 1)
+        return (
+            <Col key={cat.config.url}>
+                <Card style={{ width:'20rem' }} >
+                    <Card.Body>
+                        <Card.Title>{catName.toUpperCase()}</Card.Title>
+                        <Card.Text>
+                            Count: {cat.data.count}
+                        </Card.Text>
+                        <Link 
+                            to={{
+                                pathname: "/category/" + catName,
+                            }} 
+                        >
+                            <Button variant="primary">Show all {catName}</Button>
+                        </Link>
+                    </Card.Body>
+                </Card>
+            </Col>
+        )
+    }
 
-    console.log(state)
-
-    const [iState, setIState] = useState();
-
-    useEffect(() => {
-        setIState(state)
-    },[state])
-
-    console.log(iState)
     return (
         <Container>
             <Row>
-                <Col>
-                    <Card style={{ width:'18rem' }} >
-                        <Card.Body>
-                            <Card.Title>Cat1</Card.Title>
-                            <Card.Text>
-                            Conut: {}
-                            </Card.Text>
-                            <Link 
-                                to={{
-                                    pathname: "/people",
-                                }} 
-                            >
-                            <Button variant="primary">People</Button>
-                            </Link>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card style={{ width:'18rem' }} >
-                        <Card.Body>
-                            <Card.Title>Cat2</Card.Title>
-                            <Card.Text>
-                            Year of birh: 
-                            </Card.Text>
-                            <Link 
-                                to={{
-                                    pathname: "/planets",
-                                }} 
-                            >
-                            <Button variant="primary">Planets</Button>
-                            </Link>
-                        </Card.Body>
-                    </Card>
-                </Col>
+                {data.map(entity => render(entity))}
             </Row>
         </Container>
        

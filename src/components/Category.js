@@ -9,6 +9,9 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+
+
+
 function Category() {
 
   const [ fullList, setFullList ] = useState([]);
@@ -24,14 +27,14 @@ function Category() {
         let count = res.data.count;
         let allPagesReq = [];
         let numOfPages = Math.ceil(count / 10);
-        for (let i=1; i <= numOfPages; i++) {
+        for (let i = 1; i <= numOfPages; i++) {
           let singlePageReq = axios(`https://swapi.py4e.com/api/${name}?page=${i}`);
           allPagesReq.push(singlePageReq)
         }
         return axios.all(allPagesReq)
       })
       .then(allReq => allReq
-        .map( sinRes => setFullList(state => [...state, ...sinRes.data.results])))
+        .map(sinRes => setFullList(state => [...state, ...sinRes.data.results])))
     }
     fetchLoad();
   }, []);
@@ -46,26 +49,28 @@ function Category() {
           <Card style={{ width:'18rem' }} >
               <Card.Body>
                   <Card.Title>{ item.name }</Card.Title>
-                  <Card.Text>
-                  Year of birh: {item.birth_year}
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link 
+                    to={{
+                      pathname: "/single/" + item.name.replace(/\s/g, ''),
+                      state: { data: item },
+                    }} 
+                  >
+                    <Button variant="primary"> ... more {}</Button>
+                  </Link>
               </Card.Body>
           </Card>
         </Col>
     )
-       
   }
     return (
         <Container>
-          <h1>{ name }</h1> 
+          <h1>{ name.toUpperCase() }</h1> 
           <CardDeck>
-            
             {fullList.map(entity =>  render(entity))}
           </CardDeck>
         </Container>
     );
- 
+      
 }
 
 export default Category;
