@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Card, Button, CardDeck, Col } from 'react-bootstrap'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
-
-
+import { Link, useParams} from "react-router-dom";
 
 function Category() {
 
@@ -35,12 +26,11 @@ function Category() {
       })
       .then(allReq => allReq
         .map(sinRes => setFullList(state => [...state, ...sinRes.data.results])))
+      .catch(err => console.log(err))
     }
     fetchLoad();
-  }, []);
+  }, [name]);
 
-
-  console.log(fullList)
 
 
   let render = (item) => {
@@ -51,7 +41,7 @@ function Category() {
                   <Card.Title>{ item.name }</Card.Title>
                   <Link 
                     to={{
-                      pathname: "/single/" + item.name.replace(/\s/g, ''),
+                      pathname: "/single/" + item.url.replace(/(^\w+:|^)\/\//, ''),
                       state: { data: item },
                     }} 
                   >
@@ -64,7 +54,7 @@ function Category() {
   }
     return (
         <Container>
-          <h1>{ name.toUpperCase() }</h1> 
+          <h1 className="text-primary"> { name.toUpperCase() }</h1> 
           <CardDeck>
             {fullList.map(entity =>  render(entity))}
           </CardDeck>

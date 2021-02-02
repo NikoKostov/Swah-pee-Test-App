@@ -1,24 +1,42 @@
-import React from 'react'
-import { Container, Card, Button, CardDeck, Col } from 'react-bootstrap'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
+import axios from 'axios';
+import React, { useState, useEffect }  from 'react'
 
-function Single(props) {
+function Single() {
 
-    console.log(props);
+    const [ entInfo, setEntInfo ] = useState([]);
+
+
+    // Takes a API link to current entity from Link element and reformat it and put in state
+    let entLink = "https://" + window.location.href.substring(window.location.href.indexOf("swapi"));
+
+    useEffect(() => {
+
+        axios
+        .get(entLink)
+        .then(res => {
+            let entArr = Object.entries(res.data)
+            setEntInfo(entArr)})
+        .catch(err => console.log(err))
+        
+    }, [entLink])
     
-    const { name } = useParams();
+    //TODO style the page
+
+
+    //Renders entity info
+    let render = (item) => {
+        return (
+            
+            <li className="list-group-item" key={item[0]}> {`${item[0]}: ${item[1]}`} </li>
+            
+        )
+    }
     
-    console.log( name )
     return (
         <div>
-            <h1>{name}</h1>
+            <ul className="list-group">
+                {entInfo.map(entity =>  render(entity))}
+            </ul>
         </div>
     )
 }

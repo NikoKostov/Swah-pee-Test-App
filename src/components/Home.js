@@ -1,14 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Category from './Category'
 import { Container, Card, Button, Col, Row } from 'react-bootstrap'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams
-  } from "react-router-dom";
+import { Link, } from "react-router-dom";
 
 function Home({ state: data }) {
     // Gets the data from prop and fill it in to Card component
