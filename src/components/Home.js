@@ -11,10 +11,10 @@ function Home({ state: data }) {
                     <Card.Body>
                         <Card.Title>{catName.toUpperCase()}</Card.Title>
                         <Card.Text>
-                            Count: {cat.data.count}
+                            Number of items: {cat.data.count}
                         </Card.Text>
                         <Link 
-                            to={{
+                            to={{ //Sends category name via the Link 
                                 pathname: "/category/" + catName,
                             }} 
                         >

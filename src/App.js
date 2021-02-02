@@ -13,7 +13,6 @@ function App() {
 
  
   // Gets first page of the categories and store them in state which is passed as prop to the Home component //
-  
   useEffect(() => {  
 
     const categories = ["people", "planets"];
@@ -31,6 +30,8 @@ function App() {
     .catch(err => console.log(err))
 
   },[])
+
+  // TODO Navbar
   return (
     <Router>
       <div>
