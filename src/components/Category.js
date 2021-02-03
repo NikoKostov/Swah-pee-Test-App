@@ -62,14 +62,19 @@ function Category() {
 
   let renderResults = () => {
     return (
-      searchTerm == "" 
+      <>
+      <CardDeck> 
+      {searchTerm === "" 
       ? currentEnts.map(entity => renderCard(entity))
       : fullList.filter((val) => {
         if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
           return val
         }
       })
-      .map(entity => renderCard(entity))
+      .map(entity => renderCard(entity))}
+      </CardDeck>
+      {searchTerm === "" ? <Pagination entsPerPage={entsPerPage} totalEnts={fullList.length} paginate={paginate}/>: <p></p> }
+      </>
     )
   }
 
@@ -84,11 +89,9 @@ function Category() {
           style={{ width:'14rem' }}
           className="ml-9"/>
         </div>
-        <CardDeck> 
         {loading ? <h3 className="text-light bg-primary text-wrap p-2 mt-5">Loading...</h3>
         : renderResults()}
-        </CardDeck>
-        <Pagination entsPerPage={entsPerPage} totalEnts={fullList.length} paginate={paginate}/>
+        
       </div>
     );
       

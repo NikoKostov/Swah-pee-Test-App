@@ -1,4 +1,4 @@
-import { Card, Button, Col, Row } from 'react-bootstrap'
+import { Card, Button, Row } from 'react-bootstrap'
 import { Link, } from "react-router-dom";
 
 function Home({ state: data }) {
