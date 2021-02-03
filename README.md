@@ -41,10 +41,10 @@ What it does:
 - Fetches the data from http://swapi.py4e.com/
 - Displays selected category with pagination and search options
 - Displays selected entity info
+- You can change the category names in "categories" array in App.js to get diferent data.
+  Possible categories: Planets, Spaceships, Vehicles, People, Films and Species
 
 ### Built With
-
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 - [React](https://reactjs.org/)
 - [React Bootstrap](https://react-bootstrap.github.io/)
