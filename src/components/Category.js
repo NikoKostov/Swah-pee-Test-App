@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Button, CardDeck, Col } from 'react-bootstrap'
-import { Link, useParams} from 'react-router-dom';
+import { Card, Button, CardDeck, Col, Form } from 'react-bootstrap'
+import { Link, useParams, } from 'react-router-dom';
 import { Pagination } from './Pagination';
 function Category() {
 
@@ -9,6 +9,7 @@ function Category() {
   const [ loading, setLoading ] = useState(false);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ entsPerPage] = useState(9);
+  const [ searchTerm, setSearchTerm] = useState('')
   
   const { name } = useParams();
 
@@ -40,10 +41,10 @@ function Category() {
 
   const paginate = (pageNum) => setCurrentPage(pageNum);
 
-  let render = (item) => {
+  let renderCard = (item) => {
     return (
         <Col md="4" key={item.name}>
-          <Card className="mt-4">
+          <Card className="mt-4" >
               <Card.Body>
                   <Card.Title className="jedi-font">{ item.name }</Card.Title>
                   <Link 
@@ -58,16 +59,37 @@ function Category() {
         </Col>
     )
   }
+
+  let renderResults = () => {
     return (
-      <>  
-        <div className="d-flex justify-content-center p-0">
-          {loading ? <h3 className="text-light bg-primary text-wrap p-2 mt-5">Loading...</h3> : <h1 className="text-primary mt-3"> { name.toUpperCase() }</h1> }
+      searchTerm == "" 
+      ? currentEnts.map(entity => renderCard(entity))
+      : fullList.filter((val) => {
+        if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return val
+        }
+      })
+      .map(entity => renderCard(entity))
+    )
+  }
+
+    return (    
+      <div>
+        <div className="d-flex justify-content-around align-items-center mt-4">
+          <h1 className="text-primary"> { name.toUpperCase() }</h1>
+          <Form.Control
+          type="text" 
+          placeholder="Search..." 
+          onChange={event => setSearchTerm(event.target.value)}
+          style={{ width:'14rem' }}
+          className="ml-9"/>
         </div>
-          <CardDeck> 
-              {currentEnts.map(entity =>  render(entity))}
-          </CardDeck>
-          <Pagination entsPerPage={entsPerPage} totalEnts={fullList.length} paginate={paginate}/>
-      </>
+        <CardDeck> 
+        {loading ? <h3 className="text-light bg-primary text-wrap p-2 mt-5">Loading...</h3>
+        : renderResults()}
+        </CardDeck>
+        <Pagination entsPerPage={entsPerPage} totalEnts={fullList.length} paginate={paginate}/>
+      </div>
     );
       
 }

@@ -6,7 +6,7 @@ function Home({ state: data }) {
     const render = (cat) => {
         const catName = cat.config.url.substring(cat.config.url.lastIndexOf('/') + 1)
         return (
-                <Card style={{ width:'14rem' }} className="m-4" >
+                <Card style={{ width:'14rem' }} className="m-4" key={catName}>
                     <Card.Body >
                         <Card.Title className="text-primary">{catName.toUpperCase()}</Card.Title>
                         <Card.Text>

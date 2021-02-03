@@ -20,7 +20,7 @@ function App() {
 
     const categories = ["people", "planets"];
 
-    let catReqs = []
+    const catReqs = []
     for (let i in categories) {
       catReqs.push(axios(`https://swapi.py4e.com/api/${categories[i]}`))
     }
@@ -38,14 +38,14 @@ function App() {
   return (
     <Router>
       <Container >
-      <Navbar bg="light" className="d-flex justify-content-center">
+      <Navbar bg="light" className="d-flex justify-content-center p-0">
         <Navbar.Brand>
           <Link to="/" >
             <Image 
               src={logo}
               style={{width: 50, height: 'auto'}}
               className="d-inline-block align-top"
-              alt="React Bootstrap logo"/>
+              alt="Swah-pee-test-app"/>
         </Link>
         </Navbar.Brand>
       </Navbar>
