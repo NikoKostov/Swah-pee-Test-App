@@ -55,7 +55,7 @@ What it does:
 
 ## Getting Started
 
-You shoud have Node.js installed
+You shoud have Node.js installed on your system
 
 ### Prerequisites
 
