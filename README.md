@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/NikoKostov/Swah-pee-Test-App">
-    <img src="star.svg" alt="Logo" width="80" height="80">
+    <img src="src/star.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Swah-pee-test-app</h3>
@@ -50,8 +50,8 @@ What it does:
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 - [React](https://reactjs.org/)
-- [React-bootstrap](https://react-bootstrap.github.io/)
-- [React-router](https://reactrouter.com/)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+- [React Router](https://reactrouter.com/)
 - [axios](https://github.com/axios/axios)
 
 <!-- GETTING STARTED -->
