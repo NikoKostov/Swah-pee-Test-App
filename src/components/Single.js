@@ -6,7 +6,7 @@ function Single() {
     const [ entInfo, setEntInfo ] = useState([]);
 
 
-    // Takes a API link to current entity from Link element and reformat it and put in state
+    // Takes a API link to current entity from Link element reformat it and put in the state
     let entLink = "https://" + window.location.href.substring(window.location.href.indexOf("swapi"));
 
     useEffect(() => {

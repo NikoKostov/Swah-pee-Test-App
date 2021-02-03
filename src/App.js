@@ -34,7 +34,7 @@ function App() {
 
   },[])
 
-  // TODO Navbar
+  // Main routig
   return (
     <Router>
       <Container >

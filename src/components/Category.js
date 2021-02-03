@@ -16,7 +16,7 @@ function Category() {
   useEffect(() => {
     setFullList([]);
       setLoading(true);
-      axios
+      axios //Fetch info from the API depending on selected category 
       .get(`https://swapi.py4e.com/api/${name}`)
       .then(res => {
         let count = res.data.count;
@@ -27,7 +27,7 @@ function Category() {
           allPagesReq.push(singlePageReq)
         }
         return axios.all(allPagesReq)
-      })
+      }) //Maps the response and save it in the state
       .then(allReq => allReq
         .map(sinRes => setFullList(state => [...state, ...sinRes.data.results])))
       .then(() => setLoading(false))
@@ -35,12 +35,13 @@ function Category() {
     
   }, [name]);
 
+  //Calculates the currents entities for the actual page
   const lastEntIndex = currentPage * entsPerPage;
   const firstEntIndex = lastEntIndex - entsPerPage;
   const currentEnts = fullList.slice(firstEntIndex, lastEntIndex);
 
   const paginate = (pageNum) => setCurrentPage(pageNum);
-
+  
   let renderCard = (item) => {
     return (
         <Col md="4" key={item.name}>
@@ -48,7 +49,7 @@ function Category() {
               <Card.Body>
                   <Card.Title >{ item.name }</Card.Title>
                   <Link 
-                    to={{
+                    to={{ //Sends formated URL for the selected entity
                       pathname: "/single/" + item.url.replace(/(^\w+:|^)\/\//, ''),
                       state: { data: item },
                     }}>
@@ -64,8 +65,8 @@ function Category() {
     return (
       <>
       <CardDeck> 
-      {searchTerm === "" 
-      ? currentEnts.map(entity => renderCard(entity))
+      {searchTerm === "" //Checks for input in search field and mach to the fulllist
+      ? currentEnts.map(entity => renderCard(entity)) //If no input renders paginated entities
       : fullList.filter((val) => {
         if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
           return val
@@ -77,7 +78,7 @@ function Category() {
       </>
     )
   }
-
+    //
     return (    
       <div>
         <div className="d-flex justify-content-around align-items-center mt-4">
@@ -89,7 +90,8 @@ function Category() {
           style={{ width:'14rem' }}
           className="ml-9"/>
         </div>
-        {loading ? <h3 className="text-light bg-primary text-wrap p-2 mt-5">Loading...</h3>
+        {loading 
+        ? <h3 className="text-light bg-primary text-wrap p-2 mt-5">Loading...</h3>
         : renderResults()}
         
       </div>
