@@ -34,7 +34,7 @@
 
 ## About The Project
 
-Theis is a test app project
+This is a test app project
 
 What it does:
 
