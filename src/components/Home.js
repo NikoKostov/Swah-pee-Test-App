@@ -1,4 +1,4 @@
-import { Container, Card, Button, Col, Row } from 'react-bootstrap'
+import { Card, Button, Col, Row } from 'react-bootstrap'
 import { Link, } from "react-router-dom";
 
 function Home({ state: data }) {
@@ -6,10 +6,9 @@ function Home({ state: data }) {
     const render = (cat) => {
         const catName = cat.config.url.substring(cat.config.url.lastIndexOf('/') + 1)
         return (
-            <Col key={cat.config.url}>
-                <Card style={{ width:'20rem' }} >
-                    <Card.Body>
-                        <Card.Title>{catName.toUpperCase()}</Card.Title>
+                <Card style={{ width:'14rem' }} className="m-4" >
+                    <Card.Body >
+                        <Card.Title className="text-primary">{catName.toUpperCase()}</Card.Title>
                         <Card.Text>
                             Number of items: {cat.data.count}
                         </Card.Text>
@@ -18,22 +17,17 @@ function Home({ state: data }) {
                                 pathname: "/category/" + catName,
                             }} 
                         >
-                            <Button variant="primary">Show all {catName}</Button>
+                            <Button variant="primary" className="float-right">Show all {catName}</Button>
                         </Link>
                     </Card.Body>
                 </Card>
-            </Col>
         )
     }
 
     return (
-        <Container>
-            <Row>
+            <Row className="d-flex justify-content-center">
                 {data.map(entity => render(entity))}
             </Row>
-        </Container>
-       
-
     )
 }
 

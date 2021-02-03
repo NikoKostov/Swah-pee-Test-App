@@ -1,4 +1,12 @@
-.App {
-  display: flex;
-  justify-content: center;
+@font-face {
+  font-family: jeditFont;
+  src: url(starjedi.ttf);
+}
+
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.text-primary {
+  font-family: jeditFont;
 }

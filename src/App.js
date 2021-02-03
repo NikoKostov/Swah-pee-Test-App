@@ -5,6 +5,9 @@ import Home from './components/Home'
 import Single from './components/Single'
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, } from "react-router-dom";
+import { Container, Image, Navbar } from 'react-bootstrap';
+import logo from './star.svg';
+
 
 
 function App() {
@@ -34,15 +37,18 @@ function App() {
   // TODO Navbar
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-        </nav>
-
+      <Container >
+      <Navbar bg="light" className="d-flex justify-content-center">
+        <Navbar.Brand>
+          <Link to="/" >
+            <Image 
+              src={logo}
+              style={{width: 50, height: 'auto'}}
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"/>
+        </Link>
+        </Navbar.Brand>
+      </Navbar>
         <Switch> 
           <Route exact path="/">
             <Home state={ catData }/>
@@ -54,7 +60,7 @@ function App() {
             <Single />
           </Route>
         </Switch>
-      </div>
+      </Container>
     </Router>
   );
 }
