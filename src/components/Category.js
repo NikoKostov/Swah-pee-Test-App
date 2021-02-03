@@ -46,7 +46,7 @@ function Category() {
         <Col md="4" key={item.name}>
           <Card className="mt-4" >
               <Card.Body>
-                  <Card.Title className="jedi-font">{ item.name }</Card.Title>
+                  <Card.Title >{ item.name }</Card.Title>
                   <Link 
                     to={{
                       pathname: "/single/" + item.url.replace(/(^\w+:|^)\/\//, ''),
