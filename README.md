@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
-  <a bg="light" href="https://github.com/NikoKostov/Swah-pee-Test-App">
+<p  bg="light" align="center">
+  <a href="https://github.com/NikoKostov/Swah-pee-Test-App">
     <img src="src/star.svg" alt="Logo" width="80" height="80">
   </a>
 
