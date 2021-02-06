@@ -1,6 +1,3 @@
-<!-- PROJECT LOGO -->
-This is a test app project
-
 
 <br />
 <p align="center">
