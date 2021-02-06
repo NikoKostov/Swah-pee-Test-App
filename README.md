@@ -1,4 +1,7 @@
 <!-- PROJECT LOGO -->
+This is a test app project
+
+
 <br />
 <p align="center">
  
@@ -58,8 +61,6 @@ What it does:
 You shoud have Node.js installed on your system
 
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
 
 - npm
   ```sh
