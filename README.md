@@ -5,7 +5,7 @@
   <h3 align="center">Swah-pee-test-app</h3>
 
   <p align="center">
-    A test app that displays data fetched from http://swapi.py4e.com/ 
+    A test React app that displays data fetched from <a href="http://swapi.py4e.com/">SWAPI - The Star Wars API</>
    
   </p>
 </p>
